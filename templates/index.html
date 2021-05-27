@@ -24,7 +24,7 @@
         align-items: center;
         overflow: hidden;
       }
-      .img img {
+      .img video {
         min-width: 70%;
         border-radius: 10px;
       }
@@ -54,11 +54,27 @@
       </center>
       <div class="main">
         <div class="info"></div>
-        <div class="img"><img src = {{ url_for('video_feed' )}} /></div>
+        <div class="img">
+          <video autoplay="true" id="videoElement"></video>
+        </div>
       </div>
     </div>
     <footer class="footer">
       <center>&copy; Made with ❤️</center>
     </footer>
+
+    <script>
+      var video = document.querySelector("#videoElement");
+
+        if (navigator.mediaDevices.getUserMedia) {
+          navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function (stream) {
+              video.srcObject = stream;
+            })
+            .catch(function (err0r) {
+              console.log("Something went wrong!");
+            });
+        }
+    </script>
   </body>
 </html>
