@@ -1,19 +1,64 @@
 <html>
-  <head> </head>
-  <body>
-    <center>
-      <video id="video" width="640" height="480" autoplay></video>
-    </center>
-    <script>
-      var video = document.getElementById("video");
-      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        navigator.mediaDevices
-          .getUserMedia({ video: true })
-          .then(function (stream) {
-            video.src = window.URL.createObjectURL(stream);
-            video.play();
-          });
+  <head>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
       }
-    </script>
+      .all {
+        flex: 1;
+        display: flex;
+        justify-content:space-evenly;
+        flex-direction: column;
+        background-color: #e3f2fd;
+      }
+
+      .main {
+        width: 100%;
+        max-height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+      .img img {
+        min-width: 70%;
+        border-radius: 10px;
+      }
+
+      .footer {
+        background-color: #f3e5f5;
+        padding: 20px;
+      }
+      @media (max-width: 1000px) {
+        .img img {
+          object-fit: contain;
+          min-width: 100%;
+          height: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="all">
+      <center>
+        <div class="headings">
+          <h1>Face Mask Detector</h1>
+          <div>
+            <a href = "https://github.com/chauhanarpit09?tab=repositories">Github Repo<a>
+          </div>
+        </div>
+      </center>
+      <div class="main">
+        <div class="info"></div>
+        <div class="img"><img src = {{ url_for('video_feed' )}} /></div>
+      </div>
+    </div>
+    <footer class="footer">
+      <center>&copy; Made with ❤️</center>
+    </footer>
   </body>
 </html>
